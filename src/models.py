@@ -11,6 +11,8 @@ from src.database import Base
 
 
 class User(Base):
+    __tablename__ = "users"
+
     id: Mapped[int] = mapped_column(primary_key=True)
     full_name: Mapped[str] = mapped_column(String(100), nullable=False)
     email: Mapped[str] = mapped_column(String(120), nullable=False, unique=True)
@@ -29,6 +31,8 @@ class TaskStatus(str, Enum):
 
 
 class Task(Base):
+    __tablename__ = "tasks"
+
     id: Mapped[int] = mapped_column(primary_key=True)
     title: Mapped[str] = mapped_column(String(255), nullable=False)
     description: Mapped[Optional[str]] = mapped_column(Text)
@@ -66,6 +70,8 @@ class TaskExecutor(Base):
 
 
 class Board(Base):
+    __tablename__ = "boards"
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
 
@@ -74,6 +80,8 @@ class Board(Base):
 
 
 class Column(Base):
+    __tablename__ = "columns"
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     board_id: Mapped[int] = mapped_column(ForeignKey("boards.id"), nullable=False)
@@ -83,6 +91,8 @@ class Column(Base):
 
 
 class Sprint(Base):
+    __tablename__ = "sprints"
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100), nullable=False)
     start_date: Mapped[Optional[date]] = mapped_column(Date)
@@ -96,6 +106,8 @@ class Sprint(Base):
 
 
 class Group(Base):
+    __tablename__ = "groups"
+
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(100), nullable=False, unique=True)
 
